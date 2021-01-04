@@ -80,7 +80,8 @@ class TensorType(DataType):
     def to_onnx_type(self):
         onnx_type = onnx_proto.TypeProto()
         onnx_type.tensor_type.elem_type = self._get_element_onnx_type()
-        for d in self.shape:
+        for dim in self.shape:
+            d = dim.value
             s = onnx_type.tensor_type.shape.dim.add()
             if d is None:
                 pass
